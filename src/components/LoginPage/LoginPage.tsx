@@ -12,6 +12,7 @@ export default function LoginPage() {
       setHiddenPassword(true);
     }
   };
+
   return (
     <>
       <div className=" h-screen w-screen  bg-custom-gradient lg:items-center -z-10">
@@ -29,7 +30,7 @@ export default function LoginPage() {
             <input
               type={hiddenPassword ? "text" : "password"}
               className="mt-[15px] h-[51px] w-[327px] rounded-[9px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px] "
-              placeholder="Masukkan Password"
+              placeholder="Enter Password"
             />
             {hiddenPassword ? (
               <>
