@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/components/fragments/button/ButtonBack";
+import ButtonBack from "@/components/fragments/button/ButtonBack";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ export default function LoginPage() {
   return (
     <>
       <div className=" h-screen w-screen  bg-custom-gradient lg:items-center -z-10">
-        <Button />
+        <ButtonBack />
         <h1 className="text-white font-bold text-[24px] mt-[158px] absolute ml-[41px] md:ml-[82px] lg:ml-[561px]">
           Login
         </h1>

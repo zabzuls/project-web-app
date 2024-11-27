@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ButtonBack() {
   return (
-    <button className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[83px] absolute ml-[18px]">
+    <button className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[22px] absolute ml-[18px]">
       <svg
         width="10"
         height="16"
