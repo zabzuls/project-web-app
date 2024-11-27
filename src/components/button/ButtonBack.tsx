@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-export default function Button() {
+export default function ButtonBack() {
   return (
     <button className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[83px] absolute ml-[18px]">
       <svg
