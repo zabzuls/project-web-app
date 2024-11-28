@@ -11,7 +11,7 @@ export default function ButtonBack({path}:pathProps) {
     redirect(path)
   }
   return (
-    <button onClick={handleButton} className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] pt-[22px] ml-[18px">
+    <button onClick={handleButton} className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] pt-[22px] ml-[36px]">
       <svg
         width="10"
         height="16"
