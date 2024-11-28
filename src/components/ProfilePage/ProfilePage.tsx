@@ -1,12 +1,12 @@
 import React from "react";
-// import ButtonBack from "../fragments/button/ButtonBack";
+import ButtonBack from "../fragments/button/ButtonBack";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import Link from "next/link";
 
 export default function ProfilePage() {
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
-      {/* <ButtonBack path="/profile" /> */}
+      <ButtonBack path="/profile" />
       <div className="flex flex-col items-center">
         <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px]">
           <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">Zabzul</h1>
