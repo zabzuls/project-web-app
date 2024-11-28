@@ -1,6 +1,7 @@
 "use client";
 import ButtonBack from "@/components/fragments/button/ButtonBack";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -12,6 +13,9 @@ export default function LoginPage() {
       setHiddenPassword(true);
     }
   };
+  const handleSubmit = () => {
+    redirect('/profile')
+  }
 
   return (
     <>
@@ -94,7 +98,7 @@ export default function LoginPage() {
               </>
             )}
           </button>
-          <button className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg">
+          <button onClick={handleSubmit} className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg">
             Login
           </button>
           <span className="flex mt-[40px] space-x-1">
