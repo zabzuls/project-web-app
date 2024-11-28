@@ -20,7 +20,7 @@ export default function AboutPage() {
     <div className="h-max-screen w-screen  bg-[#09141A] lg:items-center">
       <ButtonBack path="/profile"/>
       <div className="flex flex-col items-center">
-        <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px]">
+        <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px] bg-center bg-cover" style={{ backgroundImage: `url(${isImage})` }}>
           <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">Zabzul</h1>
         </div>
         <div className="w-[359px] h-[511px] shadow-md rounded-[14px] space-y-3 bg-[#0E191F] pl-[27px]">
@@ -109,7 +109,7 @@ export default function AboutPage() {
         <div className="flex flex-col justify-between w-[359px] h-[120px] shadow-md rounded-[14px] space-y-3 bg-[#0E191F] pl-[27px] mt-[18px] mb-[60px]">
           <div className="flex justify-between">
             <h2 className="mt-[13px] font-bold">Interest</h2>
-            <Link className="mr-[14px] mt-[8px]" href={"/edit-interest"}>
+            <Link className="mr-[14px] mt-[8px]" href={"/interest"}>
               <ButtonEdit />
             </Link>
           </div>
