@@ -1,11 +1,14 @@
 "use client";
+import { redirect } from "next/navigation";
 import React from "react";
-import { useRouter } from "next/navigation";
 
-export default function ButtonBack() {
-  const router = useRouter();
+
+interface pathProps{
+  path:string;
+}
+export default function ButtonBack({path}:pathProps) {
   const handleButton = () => {
-    router.back();
+    redirect(path)
   }
   return (
     <button onClick={handleButton} className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[22px] absolute ml-[18px]">

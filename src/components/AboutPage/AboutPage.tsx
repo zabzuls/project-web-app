@@ -1,12 +1,24 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import ButtonBack from "../fragments/button/ButtonBack";
 import Link from "next/link";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import ButtonPlus from "../fragments/button/ButtonPlus";
+import Image from "next/image";
 export default function AboutPage() {
+  // const urlImage = "";
+  const urlImage = "/assets/zabzul-supratman.jpeg";
+  const [isImage, setImage] = useState<string | null>(null);
+  useEffect(() => {
+    if (urlImage) {
+      setImage(urlImage);
+    } else if (!urlImage) {
+      setImage(null);
+    }
+  }, []);
   return (
     <div className="h-max-screen w-screen  bg-[#09141A] lg:items-center">
-      <ButtonBack />
+      <ButtonBack path="/profile"/>
       <div className="flex flex-col items-center">
         <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px]">
           <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">Zabzul</h1>
@@ -21,8 +33,17 @@ export default function AboutPage() {
             </button>
           </div>
           <div className="flex items-center space-x-[15px] pb-[28px]">
-            <div className="flex justify-center items-center bg-[#FFFFFF14] w-[57px] h-[57px] rounded-[17px]">
-              <ButtonPlus/>
+            <div className="flex justify-center items-center bg-[#FFFFFF14] w-[57px] h-[57px] rounded-[17px] overflow-hidden object-cover">
+              {isImage ? (
+                <Image
+                  src={isImage}
+                  alt={"Image Profile"}
+                  width={100}
+                  height={100}
+                />
+              ) : (
+                <ButtonPlus />
+              )}
             </div>
             <h1 className="text-[14px]">Add Image</h1>
           </div>
