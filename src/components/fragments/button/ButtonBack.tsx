@@ -1,9 +1,14 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export default function ButtonBack() {
+  const router = useRouter();
+  const handleButton = () => {
+    router.back();
+  }
   return (
-    <button className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[22px] absolute ml-[18px]">
+    <button onClick={handleButton} className="lg:hidden flex items-center space-x-2 w-[51px] h[17px] mt-[22px] absolute ml-[18px]">
       <svg
         width="10"
         height="16"
