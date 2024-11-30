@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonBack from "../fragments/button/ButtonBack";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import Link from "next/link";
@@ -17,16 +17,45 @@ export default function ProfilePage() {
     setEmpty(false);
   } 
  
-  const token = localStorage.getItem("authToken");
-  if (!token) {
-    console.log("Token tidak ditemukan.");
-    window.location.href = "/login";
-  }
   const removeToken = () => {
     localStorage.removeItem("authToken");
     console.log("Token telah dihapus dari localStorage.");
     window.location.href = "/login";
   };
+
+const fetchData = async () => {
+  const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
+      window.location.href = "/login";
+      return;
+    }
+  try {
+    const response = await fetch("https://techtest.youapp.ai/api/getProfile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+     
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("TOKEN IS ANJING : ", token);
+    console.error("Error fetching data:", error);
+  }
+};
+
+useEffect(() => {
+  fetchData();
+}, []);
+
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
       <ButtonBack path="/profile" />
