@@ -123,7 +123,7 @@ export default function InterestPage() {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Add your interest"
+            placeholder="Add and enter your interest"
             onKeyDown={handleKeyDown}
             className="h-[51px] w-[327px] rounded-[9px] mt-[35px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px]"
           />
