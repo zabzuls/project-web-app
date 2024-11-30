@@ -16,6 +16,17 @@ export default function ProfilePage() {
   if (!data) {
     setEmpty(false);
   } 
+ 
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    console.log("Token tidak ditemukan.");
+    window.location.href = "/login";
+  }
+  const removeToken = () => {
+    localStorage.removeItem("authToken");
+    console.log("Token telah dihapus dari localStorage.");
+    window.location.href = "/login";
+  };
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
       <ButtonBack path="/profile" />
@@ -66,6 +77,12 @@ export default function ProfilePage() {
           </div>
           <h2 className="pb-[23px] text-[14px]">
             Add in your interest to find a better match
+            <button
+              onClick={removeToken}
+              className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8-px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
+            >
+              Logout
+            </button>
           </h2>
         </div>
       </div>

@@ -29,8 +29,8 @@ export default function LoginPage() {
       });
 
       if (response.ok) {
-        const {token} = await response.json();
-        localStorage.setItem("authToken", token);
+        const {access_token} = await response.json();
+        localStorage.setItem("authToken", access_token);
         window.location.href = "/profile";
       }
     } catch (error) {
