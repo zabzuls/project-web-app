@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ButtonBack from "../fragments/button/ButtonBack";
+// import ButtonBack from "../fragments/button/ButtonBack";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import Link from "next/link";
 import { BaseUrl } from "@/app/api/api";
@@ -60,7 +60,7 @@ useEffect(() => {
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
       <div className="flex justify-between items-center lg:justify-end lg:pr-7 pr-7">
-        <ButtonBack path="/profile" />
+        {/* <ButtonBack path="/profile" /> */}
         <button
           onClick={removeToken}
           className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
