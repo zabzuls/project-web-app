@@ -11,6 +11,7 @@ interface UserProfile {
   name: string;
   birthday: string; 
   horoscope: string; 
+  zodiac: string;
   height: number; 
   weight: number; 
   interests: string[]; 
@@ -89,11 +90,11 @@ useEffect(() => {
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Horoscope : </span>
-                <span className="text-[14px]">{userData.horoscope}</span>
+                <span className="text-[14px]">{userData.horoscope === "Error" ? "-" : userData.horoscope}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Zodiac : </span>
-                <span className="text-[14px]">{userData.horoscope}</span>
+                <span className="text-[14px]">{userData.zodiac ? userData.zodiac : "-"}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Height : </span>
