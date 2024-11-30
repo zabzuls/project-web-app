@@ -59,7 +59,7 @@ useEffect(() => {
 
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
-      <div className="flex justify-between items-center lg:justify-end lg:pr-7 pr-7">
+      <div className="flex justify-end items-center lg:justify-end lg:pr-7 pr-7">
         {/* <ButtonBack path="/profile" /> */}
         <button
           onClick={removeToken}
