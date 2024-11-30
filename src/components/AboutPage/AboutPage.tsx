@@ -1,5 +1,15 @@
 "use client"
 import React, { useEffect, useState } from "react";
+interface UserProfile {
+  email: string;
+  username: string;
+  name: string;
+  birthday: string;
+  horoscope: string;
+  height: number;
+  weight: number;
+  interests: string[];
+}
 import ButtonBack from "../fragments/button/ButtonBack";
 import Link from "next/link";
 import ButtonEdit from "../fragments/button/ButtonEdit";
@@ -14,6 +24,8 @@ export default function AboutPage() {
   const [horoscope, setHoroscope] = useState("");
   const [height, setHeight] = useState<number | undefined>();
   const [weight, setWeight] = useState<number | undefined>();
+  const [userData, setUserData] = useState<UserProfile>();
+
 
   useEffect(() => {
     if (urlImage) {
@@ -21,6 +33,39 @@ export default function AboutPage() {
     } else if (!urlImage) {
       setImage(null);
     }
+  }, []);
+
+  const fetchData = async () => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
+      window.location.href = "/login";
+      return;
+    }
+    try {
+      const response = await fetch(`${BaseUrl}getProfile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUserData(data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      if (!token) {
+        window.location.href = "/login";
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +89,7 @@ export default function AboutPage() {
           horoscope: horoscope,
           height: height,
           weight: weight,
+          interests: userData?.interests,
         }),
       });
 

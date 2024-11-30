@@ -1,11 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonBack from "../fragments/button/ButtonBack";
 import { BaseUrl } from "@/app/api/api";
-
+interface UserProfile {
+  email: string;
+  username: string;
+  name: string;
+  birthday: string;
+  horoscope: string;
+  height: number;
+  weight: number;
+  interests: string[];
+}
 export default function InterestPage() {
   const [inputValue, setInputValue] = useState<string>("");
   const [dataArray, setDataArray] = useState<string[]>([]);
+  const [userData, setUserData] = useState<UserProfile>();
+  
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
@@ -14,6 +25,38 @@ export default function InterestPage() {
       setInputValue("");
     }
   };
+  const fetchData = async () => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
+      window.location.href = "/login";
+      return;
+    }
+    try {
+      const response = await fetch(`${BaseUrl}getProfile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUserData(data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      if (!token) {
+        window.location.href = "/login";
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,10 +74,11 @@ export default function InterestPage() {
           "x-access-token": token,
         },
         body: JSON.stringify({
-          name: "Holong Sitanggang",
-          birthday: "2000-01-01",
-          height: 0,
-          weight: 0,
+          name: userData?.name || "",
+          birthday: userData?.birthday || "",
+          horoscope: userData?.horoscope || "",
+          height: userData?.height || 0,
+          weight: userData?.weight || 0,
           interests: dataArray,
         }),
       });
