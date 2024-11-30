@@ -62,7 +62,7 @@ export default function RegisterPage() {
             className="h-[51px] w-[327px] rounded-[9px] mt-[15px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px]"
             placeholder="Create Username"
           />
-          <button className="relative">
+          <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -131,8 +131,8 @@ export default function RegisterPage() {
                 </svg>
               </>
             )}
-          </button>
-          <button className="relative">
+          </div>
+          <div className="relative">
             <input
               type={showComfirmPassword ? "text" : "password"}
               className="mt-[15px] h-[51px] w-[327px] rounded-[9px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px] "
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                 </svg>
               </>
             )}
-          </button>
+          </div>
           <button
             type="submit"
             className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg"

@@ -10,11 +10,12 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleShowPassword = () => {
+  const handleShowPassword = (e: React.FormEvent) => {
+    e.preventDefault();
     setShowPassword(!showPassword);
   };
-  
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await fetch(`${BaseUrl}login`, {
@@ -30,7 +31,7 @@ export default function LoginPage() {
       });
 
       if (response.ok) {
-        const {access_token} = await response.json();
+        const { access_token } = await response.json();
         localStorage.setItem("authToken", access_token);
         window.location.href = "/profile";
       }
@@ -66,7 +67,7 @@ export default function LoginPage() {
             placeholder="Enter Username"
             required
           />
-          <button className="relative">
+          <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               name="password"
@@ -138,7 +139,7 @@ export default function LoginPage() {
                 </div>
               </>
             )}
-          </button>
+          </div>
           <button
             type="submit"
             className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg"
