@@ -19,7 +19,6 @@ export default function ProfilePage() {
  
   const removeToken = () => {
     localStorage.removeItem("authToken");
-    console.log("Token telah dihapus dari localStorage.");
     window.location.href = "/login";
   };
 
@@ -41,13 +40,10 @@ const fetchData = async () => {
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
-     
     }
-
     const data = await response.json();
     console.log(data);
   } catch (error) {
-    console.log("TOKEN IS ANJING : ", token);
     console.error("Error fetching data:", error);
   }
 };
