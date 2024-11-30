@@ -5,6 +5,7 @@ import Link from "next/link";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import ButtonPlus from "../fragments/button/ButtonPlus";
 import Image from "next/image";
+import { BaseUrl } from "@/app/api/api";
 export default function AboutPage() {
   const urlImage = "/assets/zabzul-supratman.jpeg";
   const [isImage, setImage] = useState<string | null>(null);
@@ -31,23 +32,20 @@ export default function AboutPage() {
       return;
     }
     try {
-      const response = await fetch(
-        "https://techtest.youapp.ai/api/updateProfile",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "x-access-token": token,
-          },
-          body: JSON.stringify({
-            name: name,
-            birthday: birthday,
-            horoscope: horoscope,
-            height: height,
-            weight: weight,
-          }),
-        }
-      );
+      const response = await fetch(`${BaseUrl}updateProfile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+        body: JSON.stringify({
+          name: name,
+          birthday: birthday,
+          horoscope: horoscope,
+          height: height,
+          weight: weight,
+        }),
+      });
 
       if (response.ok) {
         window.location.href = "/profile";

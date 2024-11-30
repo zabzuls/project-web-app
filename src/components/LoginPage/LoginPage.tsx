@@ -1,4 +1,5 @@
 "use client";
+import { BaseUrl } from "@/app/api/api";
 import ButtonBack from "@/components/fragments/button/ButtonBack";
 import Link from "next/link";
 import { useState } from "react";
@@ -16,7 +17,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://techtest.youapp.ai/api/login", {
+      const response = await fetch(`${BaseUrl}login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

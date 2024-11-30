@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ButtonBack from "../fragments/button/ButtonBack";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import Link from "next/link";
+import { BaseUrl } from "@/app/api/api";
 
 interface UserProfile {
   email: string;
@@ -31,16 +32,13 @@ export default function ProfilePage() {
       return;
     }
     try {
-      const response = await fetch(
-        "https://techtest.youapp.ai/api/getProfile",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "x-access-token": token,
-          },
-        }
-      );
+      const response = await fetch(`${BaseUrl}getProfile`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
