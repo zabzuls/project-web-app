@@ -4,49 +4,53 @@ import ButtonBack from "../fragments/button/ButtonBack";
 import ButtonEdit from "../fragments/button/ButtonEdit";
 import Link from "next/link";
 
+interface UserProfile {
+  email: string;
+  username: string;
+  name: string;
+  birthday: string; 
+  horoscope: string; 
+  height: number; 
+  weight: number; 
+  interests: string[]; 
+}
+
 export default function ProfilePage() {
-  const [isEmpty, setEmpty] = useState(true);
-  const data = {
-    birtDay: "29-12-200",
-    horosCope: "Virgo",
-    zodiac: "Pig",
-    height: "180 kg",
-    weight: "70 kg",
-  };
-  if (!data) {
-    setEmpty(false);
-  } 
- 
+  const [userData, setUserData] = useState<UserProfile>();
+
   const removeToken = () => {
     localStorage.removeItem("authToken");
     window.location.href = "/login";
   };
 
-const fetchData = async () => {
-  const token = localStorage.getItem("authToken");
+  const fetchData = async () => {
+    const token = localStorage.getItem("authToken");
     if (!token) {
       console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
       window.location.href = "/login";
       return;
     }
-  try {
-    const response = await fetch("https://techtest.youapp.ai/api/getProfile", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-access-token": token,
-      },
-    });
+    try {
+      const response = await fetch(
+        "https://techtest.youapp.ai/api/getProfile",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": token,
+          },
+        }
+      );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUserData(data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
+  };
 
 useEffect(() => {
   fetchData();
@@ -57,7 +61,7 @@ useEffect(() => {
       <ButtonBack path="/profile" />
       <div className="flex flex-col items-center">
         <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px]">
-          <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">Zabzul</h1>
+          <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">@ {userData?.name}</h1>
         </div>
         <div className="flex flex-col  w-[359px] h-[219px] shadow-md rounded-[14px] space-y-3 bg-[#0E191F] pl-[27px] mb-[18px]">
           <div className="flex justify-between">
@@ -66,27 +70,28 @@ useEffect(() => {
               <ButtonEdit />
             </Link>
           </div>
-          {isEmpty ? (
+          {userData ? (
             <>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Birtday : </span>
-                <span className="text-[14px]">{data.birtDay}</span>
+                <span className="text-[14px]">{userData.birthday}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Horoscope : </span>
-                <span className="text-[14px]">{data.horosCope}</span>
+                <span className="text-[14px]">{userData.horoscope}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Zodiac : </span>
-                <span className="text-[14px]">{data.zodiac}</span>
+                <span className="text-[14px]">{userData.horoscope}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Height : </span>
-                <span className="text-[14px]">{data.height}</span>
+                <span className="text-[14px]">{userData.height}</span>
               </div>
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Weight : </span>
-                <span className="text-[14px]">{data.weight}</span>
+                <span className="text-[14px]">{userData.weight}</span>
+
               </div>
             </>
           ) : (
