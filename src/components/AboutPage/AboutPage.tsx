@@ -22,8 +22,8 @@ export default function AboutPage() {
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [horoscope, setHoroscope] = useState("");
-  const [height, setHeight] = useState<number>();
-  const [weight, setWeight] = useState<number>();
+  const [height, setHeight] = useState<number>(0);
+  const [weight, setWeight] = useState<number>(0);
   const [userData, setUserData] = useState<UserProfile>();
 
 
