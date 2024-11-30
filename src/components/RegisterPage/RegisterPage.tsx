@@ -4,53 +4,77 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function RegisterPage() {
-  const [hiddenPassword, setHiddenPassword] = useState(true);
-  const [hiddenConfirmPassword, setHiddenConfirmPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(true);
+  const [showComfirmPassword, setShowPasswordComfirm] = useState(true);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleShowPassword = () => {
-    if (hiddenPassword == true) {
-      setHiddenPassword(false);
-    } else if (hiddenPassword == false) {
-      setHiddenPassword(true);
-    }
+    setShowPassword(!showPassword);
   };
   const handleConfirmShowPassword = () => {
-    if (hiddenConfirmPassword == true) {
-      setHiddenConfirmPassword(false);
-    } else if (hiddenConfirmPassword == false) {
-      setHiddenConfirmPassword(true);
+    setShowPasswordComfirm(!showComfirmPassword);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("https://techtest.youapp.ai/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          username: username,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        window.location.href = "/login";
+      }
+    } catch (error) {
+      console.log("Error saat login" + error);
     }
   };
 
   return (
     <>
-      <div className=" h-screen w-screen  bg-custom-gradient lg:items-center -z-10">
-        <ButtonBack path="/login"/>
+      <form onSubmit={handleSubmit} className=" h-screen w-screen  bg-custom-gradient lg:items-center -z-10">
+        <ButtonBack path="/login" />
         <h1 className="text-white font-bold text-[24px] mt-[158px] absolute ml-[41px] md:ml-[82px] lg:ml-[561px]">
           Register
         </h1>
         <div className="flex flex-col items-center">
           <input
             type="text"
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
             className="h-[51px] w-[327px] rounded-[9px] mt-[212px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px]"
             placeholder="Enter Email"
           />
           <input
             type="text"
+            name="username"
+            onChange={(e) => setUsername(e.target.value)}
             className="h-[51px] w-[327px] rounded-[9px] mt-[15px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px]"
             placeholder="Create Username"
           />
           <button className="relative">
             <input
-              type={hiddenConfirmPassword ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
               className="mt-[15px] h-[51px] w-[327px] rounded-[9px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px] "
               placeholder="Enter Password"
             />
-            {hiddenConfirmPassword ? (
+            {showPassword ? (
               <>
                 {/* isEye */}
                 <svg
-                  onClick={handleConfirmShowPassword}
+                  onClick={handleShowPassword}
                   className="ml-[290px] top-[34px] absolute"
                   width="21"
                   height="18"
@@ -74,7 +98,7 @@ export default function RegisterPage() {
               <>
                 {/* notEye */}
                 <svg
-                  onClick={handleConfirmShowPassword}
+                  onClick={handleShowPassword}
                   className="ml-[290px] top-[34px] absolute"
                   width="20"
                   height="17"
@@ -110,15 +134,15 @@ export default function RegisterPage() {
           </button>
           <button className="relative">
             <input
-              type={hiddenPassword ? "text" : "password"}
+              type={showComfirmPassword ? "text" : "password"}
               className="mt-[15px] h-[51px] w-[327px] rounded-[9px] bg-[#FFFFFF0F] bg-opacity-6 text-[13px] pl-[17px] "
               placeholder="Confirm Password"
             />
-            {hiddenPassword ? (
+            {showComfirmPassword ? (
               <>
                 {/* isEye */}
                 <svg
-                  onClick={handleShowPassword}
+                  onClick={handleConfirmShowPassword}
                   className="ml-[290px] top-[34px] absolute"
                   width="21"
                   height="18"
@@ -142,7 +166,7 @@ export default function RegisterPage() {
               <>
                 {/* notEye */}
                 <svg
-                  onClick={handleShowPassword}
+                  onClick={handleConfirmShowPassword}
                   className="ml-[290px] top-[34px] absolute"
                   width="20"
                   height="17"
@@ -176,7 +200,10 @@ export default function RegisterPage() {
               </>
             )}
           </button>
-          <button className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg">
+          <button
+            type="submit"
+            className="w-[331px] h-[48px] mt-[25px] rounded-[8px] bg-gradient-to-r from-[#62CDCB] to-[#4599DB] text-white font-[16px]  shadow-lg"
+          >
             Register
           </button>
           <span className="flex mt-[40px] space-x-1">
@@ -186,7 +213,7 @@ export default function RegisterPage() {
             </Link>
           </span>
         </div>
-      </div>
+      </form>
     </>
   );
 }
