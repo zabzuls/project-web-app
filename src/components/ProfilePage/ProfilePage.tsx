@@ -108,16 +108,29 @@ useEffect(() => {
             <span>Add in your your to help others know you better</span>
           )}
         </div>
-        <div className="flex flex-col justify-between w-[359px] h-[120px] shadow-md rounded-[14px] space-y-3 bg-[#0E191F] pl-[27px]">
+        <div className="flex flex-col w-[359px] h-[120px] shadow-md rounded-[14px] space-y-5 bg-[#0E191F] pl-[27px]">
           <div className="flex justify-between">
             <h2 className="mt-[13px] font-bold">Interest</h2>
             <Link className="mr-[14px] mt-[8px]" href={"/interest"}>
               <ButtonEdit />
             </Link>
           </div>
-          <h2 className="pb-[23px] text-[14px]">
-            Add in your interest to find a better match
-          </h2>
+          {userData?.interests ? (
+            <div className="text-[13px] flex">
+              {userData.interests.map((interest, index) => (
+                <div
+                  key={index}
+                  className="flex items-center  bg-[#FFFFFF1A] text-white px-3 mx-2 py-1 rounded-md"
+                >
+                  <span className="inline-block break-words">{interest}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <span className="pb-[23px] text-[14px]">
+              Add in your your to help others know you better
+            </span>
+          )}
         </div>
       </div>
     </div>
