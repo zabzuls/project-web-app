@@ -49,6 +49,9 @@ export default function ProfilePage() {
       setUserData(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+      if (!token) {
+        window.location.href = "/login";
+      }
     }
   };
 
@@ -58,10 +61,20 @@ useEffect(() => {
 
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
-      <ButtonBack path="/profile" />
+      <div className="flex justify-between items-center lg:justify-end lg:pr-7 pr-7">
+        <ButtonBack path="/profile" />
+        <button
+          onClick={removeToken}
+          className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8-px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
+        >
+          Logout
+        </button>
+      </div>
       <div className="flex flex-col items-center">
         <div className="flex flex-col justify-end bg-[#162329] w-[359px] h-[190px] mt-[68px] rounded-[16px] mb-[28px]">
-          <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">@ {userData?.name}</h1>
+          <h1 className="text-[16px] pl-[27px] mb-[17px] font-bold">
+            @ {userData?.name}
+          </h1>
         </div>
         <div className="flex flex-col  w-[359px] h-[219px] shadow-md rounded-[14px] space-y-3 bg-[#0E191F] pl-[27px] mb-[18px]">
           <div className="flex justify-between">
@@ -91,7 +104,6 @@ useEffect(() => {
               <div className="text-[13px] flex">
                 <span className="text-[#FFFFFF54]">Weight : </span>
                 <span className="text-[14px]">{userData.weight}</span>
-
               </div>
             </>
           ) : (
@@ -107,12 +119,6 @@ useEffect(() => {
           </div>
           <h2 className="pb-[23px] text-[14px]">
             Add in your interest to find a better match
-            <button
-              onClick={removeToken}
-              className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8-px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
-            >
-              Logout
-            </button>
           </h2>
         </div>
       </div>
