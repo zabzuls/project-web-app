@@ -22,8 +22,8 @@ export default function AboutPage() {
   const [name, setName] = useState("");
   const [birthday, setBirthday] = useState("");
   const [horoscope, setHoroscope] = useState("");
-  const [height, setHeight] = useState<number | undefined>();
-  const [weight, setWeight] = useState<number | undefined>();
+  const [height, setHeight] = useState<number>();
+  const [weight, setWeight] = useState<number>();
   const [userData, setUserData] = useState<UserProfile>();
 
 
@@ -183,7 +183,7 @@ export default function AboutPage() {
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />
               </div>
-              <div className="flex justify-between items-center">
+              {/* <div className="flex justify-between items-center">
                 <p className="text-[13px] ">Zodiac</p>
                 <input
                   type="text"
@@ -193,7 +193,7 @@ export default function AboutPage() {
                   placeholder="- -"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />
-              </div>
+              </div> */}
               <div className="flex justify-between items-center">
                 <p className="text-[13px] ">Height</p>
                 <input
