@@ -27,7 +27,7 @@ export default function AboutPage() {
     e.preventDefault();
     const token = localStorage.getItem("authToken");
     if (!token) {
-      console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
+      console.error("Token isempty");
       window.location.href = "/login";
       return;
     }
@@ -101,6 +101,7 @@ export default function AboutPage() {
                 <input
                   type="text"
                   name="name"
+                  value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter name"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px]"
@@ -119,6 +120,7 @@ export default function AboutPage() {
                 <input
                   name="birthday"
                   onChange={(e) => setBirthday(e.target.value)}
+                  value={birthday}
                   type="text"
                   placeholder="DD MM YY"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
@@ -130,6 +132,7 @@ export default function AboutPage() {
                   type="text"
                   name="horoscope"
                   onChange={(e) => setHoroscope(e.target.value)}
+                  value={horoscope}
                   placeholder="- -"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />
@@ -140,6 +143,7 @@ export default function AboutPage() {
                   type="text"
                   name="zodiac"
                   onChange={(e) => setHoroscope(e.target.value)}
+                  value={horoscope}
                   placeholder="- -"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />
@@ -150,6 +154,7 @@ export default function AboutPage() {
                   type="text"
                   name="height"
                   onChange={(e) => setHeight(Number(e.target.value))}
+                  value={height}
                   placeholder="Add Height"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />
@@ -160,6 +165,7 @@ export default function AboutPage() {
                   type="text"
                   name="weight"
                   onChange={(e) => setWeight(Number(e.target.value))}
+                  value={weight}
                   placeholder="Add Weight"
                   className="w-[202px] h-[36px] rounded-[8px] bg-[#D9D9D90F] opacity-6 text-[13px] text-end pr-[24px] mt-[12px]"
                 />

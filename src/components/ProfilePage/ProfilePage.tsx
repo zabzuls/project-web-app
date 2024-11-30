@@ -63,7 +63,7 @@ useEffect(() => {
         <ButtonBack path="/profile" />
         <button
           onClick={removeToken}
-          className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8-px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
+          className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent"
         >
           Logout
         </button>
