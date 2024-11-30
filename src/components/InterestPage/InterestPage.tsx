@@ -6,7 +6,7 @@ export default function InterestPage() {
     <div className=" h-screen w-screen  bg-custom-gradient lg:items-center ">
       <div className="flex justify-between items-center lg:justify-end lg:pr-7">
         <ButtonBack path="/profile" />
-        <button className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8-px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent">
+        <button className="text-[14px] w-[51px] h[17px] pt-[22px] pr-[8px] bg-gradient-to-r from-[#ABFFFD] via-[#4599DB] to-[#AADAFF] bg-clip-text text-transparent">
           Save
         </button>
       </div>
