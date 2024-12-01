@@ -25,13 +25,18 @@ export default function ProfilePage() {
     window.location.href = "/login";
   };
 
-  const token = localStorage.getItem("authToken");
   const fetchData = async () => {
-    setTimeout(() => {
-      localStorage.removeItem("authToken");
-      console.log("Token expired and removed.");
-      window.location.href = "/login";
-    }, 3600000);
+    let token = localStorage.getItem("authToken");
+    if (token) {
+      setTimeout(() => {
+        localStorage.removeItem("authToken");
+        token = null;
+        console.log(
+          "authToken telah dihapus dari localStorage dan variabel token."
+        );
+        window.location.href = "/login";
+      }, 3600000);
+    }
     if (!token) {
       console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
       window.location.href = "/login";
@@ -53,12 +58,15 @@ export default function ProfilePage() {
       setUserData(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
+      if (!token) {
+        window.location.href = "/login";
+      }
     }
   };
 
-useEffect(() => {
-  fetchData();
-}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="h-screen w-screen  bg-[#09141A] lg:items-center">
