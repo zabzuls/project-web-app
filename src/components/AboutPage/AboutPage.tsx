@@ -46,7 +46,7 @@ export default function AboutPage() {
           "authToken telah dihapus dari localStorage dan variabel token."
         );
         window.location.href = "/login";
-      }, 3600);
+      }, 3600000);
     }
     if (!token) {
       console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
