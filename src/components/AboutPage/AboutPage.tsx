@@ -35,8 +35,19 @@ export default function AboutPage() {
     }
   }, []);
 
+  let token = localStorage.getItem("authToken");
+  if (token) {
+    setTimeout(() => {
+      localStorage.removeItem("authToken");
+      token = null;
+      console.log(
+        "authToken telah dihapus dari localStorage dan variabel token."
+      );
+      window.location.href = "/login";
+    }, 3600);
+  }
+
   const fetchData = async () => {
-    const token = localStorage.getItem("authToken");
     if (!token) {
       console.error("Token tidak ditemukan. Mengarahkan ke halaman login.");
       window.location.href = "/login";
